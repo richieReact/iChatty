@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import LoginForm from '../components/LoginForm'
 
 const HomeScreen = ({ navigation }) => {
@@ -8,6 +8,10 @@ const HomeScreen = ({ navigation }) => {
       <Text>Home Screen</Text>
       <LoginForm 
         onSubmit={() => navigation.navigate('Chat')}
+      />
+      <Button 
+        title='To the Gifted Chat Demo'
+        onPress={() => navigation.navigate('Gifted')}
       />
     </View>
   )
