@@ -17,17 +17,17 @@ const HomeScreen = ({ navigation }) => {
   )
 }
 
-// HomeScreen.navigationOptions = () => {
-//   return {
-//     header: () => false
-//   }
-// }
+HomeScreen.navigationOptions = () => {
+  return {
+    headerShown: false,
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 100
+    marginTop: 200
   }
 })
 

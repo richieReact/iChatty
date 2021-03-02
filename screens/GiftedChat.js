@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useCallback } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
 
 import { GiftedChat as GChat } from 'react-native-gifted-chat'
@@ -25,14 +25,36 @@ const GiftedChat = () => {
     getMessages()
   }, [])
 
-  const onSend = useCallback((messages = []) => {
-    setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-  }, [])
+  const onSend = (message) => {
+    let userObject = message[0].user
+    let txt = message[0].text
+
+    console.log(message)
+    setMessages(previousMessages => GChat.append(previousMessages, message))
+
+    const messageObject = {
+      text: txt,
+      user: userObject
+    }
+
+    fetch("http://192.168.0.17:8000/api/messages", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(messageObject)
+      }).then((res) => {
+          return res.json();
+      }).catch((err) => {
+          console.log(err);
+      });
+  }
+  
 
   return (
     <GChat
       messages={messages}
-      onSend={messages => onSend(messages)}
+      onSend={message => onSend(message)}
       user={{
         _id: 1,
       }}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
+import { Input } from 'react-native-elements'
 
 const LoginForm = ({ navigation, onSubmit }) => {
   const [name, setName] = useState('')
@@ -11,32 +12,24 @@ const LoginForm = ({ navigation, onSubmit }) => {
   }
 
   return (
-    <View>
-      <TextInput 
-        style={styles.input}
+    <>
+      <Input 
         value={name} 
         onChangeText={(text) => nameBiz(text)}
-        placeholder={'Your name...'}   />
-      <TextInput 
-        style={styles.input}
+        label='Email' 
+      />
+      <Input 
         value={pass}
         onChangeText={(text) => setPass(text)}
-        placeholder={'Your pass...'}
+        label='Password'
       />
-      <Button title='Log In' onPress={onSubmit} />
-      
-    </View>
+      <Button title='Log In' onPress={onSubmit} />     
+    </>
   )
 }
 
 const styles = StyleSheet.create({
-  input: {
-    fontSize: 20,
-    borderWidth: 1,
-    borderColor: 'black',
-    margin: 20,
-    width: 300
-  }
+
 })
 
 export default LoginForm
