@@ -1,32 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import axios from 'axios'
-
-import { GiftedChat } from 'react-native-gifted-chat'
-import { FlatList } from 'react-native'
+import React, { useEffect } from 'react'
+import { View, Text, StyleSheet, FlatList } from 'react-native'
+import useMessages from '../hooks/useMessages'
 
 const ChatScreen = () => {
-  const [messages, setMessages] = useState([]);
-
-  // const onSend = useCallback((messages = []) => {
-  //   setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-  //   console.log(messages)
-  // }, [])
-
-  const getMessages = async () => {
-    const response = await fetch("http://192.168.0.17:8000/api/messages", {
-      method: "GET"
-    }).then((res) => {
-      console.log(res)
-      return res.json()
-    }).then((resJSON) => {
-      setMessages(resJSON.concat())
-    }).then(() => {
-      console.log({messages})
-    }).catch((err) => {
-      console.log(err)
-    });
-  }
+  const [messages, ids, getMessages, randomId] = useMessages()
 
   useEffect(() => {
     getMessages()
@@ -37,12 +14,12 @@ const ChatScreen = () => {
       <FlatList
         scrollToBottom
         data={messages}
-        // keyExtractor={(id) => id}
+        // keyExtractor={(text) => text}
         renderItem={({ item }) => {
           return (
-              <View style={styles.hmm} >
-                <Text style={styles.text}>{item.body}</Text>
-              </View> 
+              // <View style={styles.hmm}>
+                <Text style={styles.text}>{item.text}</Text>
+              // {/* </View>  */}
             )
           }}
         />
@@ -64,10 +41,6 @@ const styles = StyleSheet.create({
     borderColor: 'blue',
     borderWidth: 2,
     justifyContent: 'flex-start'
-  },
-  hmm: {
-    borderColor: 'black',
-    borderWidth: 2
   }
 })
 
