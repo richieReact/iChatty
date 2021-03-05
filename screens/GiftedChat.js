@@ -1,31 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
+import useMessages from '../hooks/useMessages'
 
 import { GiftedChat as GChat } from 'react-native-gifted-chat'
 
 const GiftedChat = () => {
-  const [messages, setMessages] = useState([])
-  const [ids, setIds] = useState([])
-
-  const getMessages = async () => {
-    const response = await fetch("http://192.168.0.17:8000/api/messages", {
-      method: "GET"
-    }).then((res) => {
-      console.log(res)
-      return res.json()
-    }).then((resJSON) => {
-      setMessages(resJSON.concat())
-    }).then(() => {
-      console.log({messages})
-    }).catch((err) => {
-      console.log(err)
-    });
-  }
-
-  const randomId = () => {
-    let rId = Math.random()
-    setIds(rId)
-  }
+  const [messages, ids, getMessages, randomId, setMessages] = useMessages()
 
   useEffect(() => {
     getMessages()
@@ -37,7 +17,6 @@ const GiftedChat = () => {
     let txt = message[0].text
     console.log(message)
     setMessages(previousMessages => GChat.append(previousMessages, message))
-    // GChat.append(messages, message)
     const messageObject = {
       text: txt,
       user: userObject
@@ -57,8 +36,9 @@ const GiftedChat = () => {
 
   return (
     <GChat
+      inverted={true}
       showUserAvatar
-      messages={messages.reverse()}
+      messages={messages}
       onSend={message => onSend(message)}
       user={{
         _id: ids,
