@@ -5,13 +5,21 @@ import LoginForm from '../components/LoginForm'
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container} >
-      <Text>Home Screen</Text>
+      <Text style={styles.title}>Chatty</Text>
       <LoginForm 
         onSubmit={() => navigation.navigate('Chat')}
       />
       <Button 
-        title='To the Gifted Chat Demo'
+        title='General Chat'
         onPress={() => navigation.navigate('Gifted')}
+      />
+      <Button 
+        title='Sports Chat'
+        onPress={() => navigation.navigate('Sports')}
+      />
+      <Button 
+        title='Gamer Chat'
+        onPress={() => navigation.navigate('Games')}
       />
     </View>
   )
@@ -19,7 +27,8 @@ const HomeScreen = ({ navigation }) => {
 
 HomeScreen.navigationOptions = () => {
   return {
-    headerShown: false,
+    headerShown: true,
+    title: 'The chatty app...'
   }
 }
 
@@ -27,7 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 200
+    backgroundColor: '#fdf5e6'
+  },
+  title: {
+    fontSize: 85,
+    marginBottom: 80
   }
 })
 

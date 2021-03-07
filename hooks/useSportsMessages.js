@@ -1,0 +1,29 @@
+import { useState } from 'react'
+
+export default () => {
+  const [sportsMessages, setSportsMessages] = useState([])
+  const [ids, setIds] = useState([])
+
+  const getSportsMessages = async () => {
+    await fetch("http://192.168.0.17:8000/api/sportsMessages", {
+      method: "GET"
+    }).then((res) => {
+      console.log(res)
+      return res.json()
+    }).then((resJSON) => {
+      const arrMsg = resJSON.reverse()
+      setSportsMessages(arrMsg)
+    }).then(() => {
+      console.log({sportsMessages})
+    }).catch((err) => {
+      console.log(err)
+    });
+  }
+
+  const randomId = () => {
+    let rId = Math.random()
+    setIds(rId)
+  }
+
+  return [sportsMessages, ids, getSportsMessages, randomId, setSportsMessages]
+}

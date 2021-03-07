@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
-import useMessages from '../hooks/useMessages'
+import { Text, StyleSheet, View } from 'react-native'
+import { GiftedChat } from 'react-native-gifted-chat'
+import useSportsMessages from '../hooks/useSportsMessages'
 
-import { GiftedChat as GChat } from 'react-native-gifted-chat'
-
-const GiftedChat = () => {
-  const [messages, ids, getMessages, randomId, setMessages] = useMessages()
+const SportChatScreen = () => {
+  const [sportsMessages, ids, getSportsMessages, randomId, setSportsMessages] = useSportsMessages()
 
   useEffect(() => {
-    getMessages()
+    getSportsMessages()
     randomId()
   }, [])
 
@@ -16,12 +15,12 @@ const GiftedChat = () => {
     let userObject = message[0].user
     let txt = message[0].text
     console.log(message)
-    setMessages(previousMessages => GChat.append(previousMessages, message))
+    setSportsMessages(previousMessages => GiftedChat.append(previousMessages, message))
     const messageObject = {
       text: txt,
       user: userObject
     }
-    fetch("http://192.168.0.17:8000/api/messages", {
+    fetch("http://192.168.0.17:8000/api/sportsMessages", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"
@@ -35,7 +34,7 @@ const GiftedChat = () => {
   }
 
   return (
-    <GChat
+    <GiftedChat
       // isLoadingEarlier
       scrollToBottom
       infiniteScroll
@@ -44,7 +43,7 @@ const GiftedChat = () => {
       renderUsernameOnMessage
       inverted={true}
       showUserAvatar
-      messages={messages}
+      messages={sportsMessages}
       onSend={message => onSend(message)}
       user={{
         _id: ids,
@@ -55,9 +54,9 @@ const GiftedChat = () => {
   )
 }
 
-GiftedChat.navigationOptions = () => {
+SportChatScreen.navigationOptions = () => {
   return {
-    title: 'Development Chat',
+    title: 'Sports Chat',
   }
 }
 
@@ -65,4 +64,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default GiftedChat
+export default SportChatScreen

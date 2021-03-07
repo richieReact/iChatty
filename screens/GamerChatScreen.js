@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
-import useMessages from '../hooks/useMessages'
+import React, { useEffect } from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
-import { GiftedChat as GChat } from 'react-native-gifted-chat'
+import { GiftedChat } from 'react-native-gifted-chat'
+import useGamerMessages from '../hooks/useGamerMessages'
 
-const GiftedChat = () => {
-  const [messages, ids, getMessages, randomId, setMessages] = useMessages()
+const GamerChatScreen = () => {
+  const [gamerMessages, ids, getGamerMessages, randomId, setGamerMessages] = useGamerMessages()
 
   useEffect(() => {
-    getMessages()
+    getGamerMessages()
     randomId()
   }, [])
 
@@ -16,12 +16,12 @@ const GiftedChat = () => {
     let userObject = message[0].user
     let txt = message[0].text
     console.log(message)
-    setMessages(previousMessages => GChat.append(previousMessages, message))
+    setGamerMessages(previousMessages => GiftedChat.append(previousMessages, message))
     const messageObject = {
       text: txt,
       user: userObject
     }
-    fetch("http://192.168.0.17:8000/api/messages", {
+    fetch("http://192.168.0.17:8000/api/gamerMessages", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"
@@ -35,7 +35,7 @@ const GiftedChat = () => {
   }
 
   return (
-    <GChat
+    <GiftedChat
       // isLoadingEarlier
       scrollToBottom
       infiniteScroll
@@ -44,7 +44,7 @@ const GiftedChat = () => {
       renderUsernameOnMessage
       inverted={true}
       showUserAvatar
-      messages={messages}
+      messages={gamerMessages}
       onSend={message => onSend(message)}
       user={{
         _id: ids,
@@ -55,9 +55,10 @@ const GiftedChat = () => {
   )
 }
 
-GiftedChat.navigationOptions = () => {
+
+GamerChatScreen.navigationOptions = () => {
   return {
-    title: 'Development Chat',
+    title: 'Gamer Chat',
   }
 }
 
@@ -65,4 +66,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default GiftedChat
+export default GamerChatScreen

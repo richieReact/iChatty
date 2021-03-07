@@ -27,6 +27,12 @@ const ChatScreen = () => {
   )
 }
 
+ChatScreen.navigationOptions = () => {
+  return {
+    title: 'Shitty flatlist, ew',
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     borderColor: 'red',
@@ -38,8 +44,6 @@ const styles = StyleSheet.create({
   },
   text: {
     alignItems: 'flex-start',
-    borderColor: 'blue',
-    borderWidth: 2,
     justifyContent: 'flex-start'
   }
 })

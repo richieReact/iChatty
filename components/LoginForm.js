@@ -16,14 +16,9 @@ const LoginForm = ({ navigation, onSubmit }) => {
       <Input 
         value={name} 
         onChangeText={(text) => nameBiz(text)}
-        label='Email' 
+        label='Input your monicker...' 
       />
-      <Input 
-        value={pass}
-        onChangeText={(text) => setPass(text)}
-        label='Password'
-      />
-      <Button title='Log In' onPress={onSubmit} />     
+      <Button title='Lame chat' onPress={onSubmit} />     
     </>
   )
 }
