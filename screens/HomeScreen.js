@@ -1,17 +1,16 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native'
+import { View, Text, StyleSheet, Button, SafeAreaView } from 'react-native'
 import LoginForm from '../components/LoginForm'
 
 const HomeScreen = ({ navigation }) => {
+
   return (
-    <View style={styles.container} >
+    <SafeAreaView style={styles.container} >
       <Text style={styles.title}>Chatty</Text>
-      <LoginForm 
-        onSubmit={() => navigation.navigate('Chat')}
-      />
+      <LoginForm />
       <Button 
         title='General Chat'
-        onPress={() => navigation.navigate('Gifted')}
+        onPress={() => navigation.navigate('General')}
       />
       <Button 
         title='Sports Chat'
@@ -21,14 +20,17 @@ const HomeScreen = ({ navigation }) => {
         title='Gamer Chat'
         onPress={() => navigation.navigate('Games')}
       />
-    </View>
+      <Button 
+        title='Stupid Trump quotes'
+        onPress={() => navigation.navigate('Trump')}
+      />
+    </SafeAreaView>
   )
 }
 
 HomeScreen.navigationOptions = () => {
   return {
-    headerShown: true,
-    title: 'The chatty app...'
+    headerShown: false
   }
 }
 
@@ -40,7 +42,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 85,
-    marginBottom: 80
+    marginTop: 80,
+    marginBottom: 60
   }
 })
 

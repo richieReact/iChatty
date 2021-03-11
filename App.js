@@ -1,19 +1,22 @@
+import React from 'react'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from './screens/HomeScreen'
-import ChatScreen from './screens/ChatScreen'
-import GiftedChat from './screens/GiftedChat'
+import GeneralChat from './screens/GeneralChat'
 import SportChatScreen from './screens/SportChatScreen'
 import GamerChatScreen from './screens/GamerChatScreen'
+import TrumpScreen from './screens/TrumpScreen'
+
+import { Provider as UserProvider } from './context/UserContext'
 
 const navigator = createStackNavigator(
   {
   Home: HomeScreen,
-  Chat: ChatScreen,
-  Gifted: GiftedChat,
+  General: GeneralChat,
   Sports: SportChatScreen,
-  Games: GamerChatScreen
+  Games: GamerChatScreen,
+  Trump: TrumpScreen
   }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {
@@ -25,4 +28,12 @@ const navigator = createStackNavigator(
 }
 );
 
-export default createAppContainer(navigator);
+const App = createAppContainer(navigator);
+
+export default () => {
+  return (
+    <UserProvider>
+      <App />
+    </UserProvider>
+  )
+}

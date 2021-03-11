@@ -1,24 +1,20 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
+import React, { useState, useContext } from 'react'
+import { StyleSheet} from 'react-native'
 import { Input } from 'react-native-elements'
 
-const LoginForm = ({ navigation, onSubmit }) => {
-  const [name, setName] = useState('')
-  const [pass, setPass] = useState('')
+import { Context as UserContext } from '../context/UserContext'
 
-  const nameBiz = text => {
-    setName(text)
-    console.log(`${name}`)
-  }
+const LoginForm = () => {
+  const [username, setUsername] = useState([])
+  const { state, editUsername } = useContext(UserContext)
 
   return (
     <>
       <Input 
-        value={name} 
-        onChangeText={(text) => nameBiz(text)}
+        value={username} 
+        onChangeText={(text) => editUsername(text)}
         label='Input your monicker...' 
       />
-      <Button title='Lame chat' onPress={onSubmit} />     
     </>
   )
 }

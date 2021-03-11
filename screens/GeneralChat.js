@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
+
 import useMessages from '../hooks/useMessages'
+import { Context as UserContext } from '../context/UserContext'
 
 import { GiftedChat as GChat } from 'react-native-gifted-chat'
 
-const GiftedChat = () => {
+const GeneralChat = () => {
   const [messages, ids, getMessages, randomId, setMessages] = useMessages()
+  const { state: { username } } = useContext(UserContext)
 
   useEffect(() => {
     getMessages()
@@ -48,16 +51,16 @@ const GiftedChat = () => {
       onSend={message => onSend(message)}
       user={{
         _id: ids,
-        name: 'Beka',
+        name: username,
         avatar: 'https://placeimg.com/140/140/any'
       }}
     />
   )
 }
 
-GiftedChat.navigationOptions = () => {
+GeneralChat.navigationOptions = () => {
   return {
-    title: 'Development Chat',
+    title: 'General Chat',
   }
 }
 
@@ -65,4 +68,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default GiftedChat
+export default GeneralChat

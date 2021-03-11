@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import { GiftedChat } from 'react-native-gifted-chat'
 import useGamerMessages from '../hooks/useGamerMessages'
+import { Context as UserContext } from '../context/UserContext'
 
 const GamerChatScreen = () => {
   const [gamerMessages, ids, getGamerMessages, randomId, setGamerMessages] = useGamerMessages()
+  const { state: { username } } = useContext(UserContext)
 
   useEffect(() => {
     getGamerMessages()
@@ -48,7 +50,7 @@ const GamerChatScreen = () => {
       onSend={message => onSend(message)}
       user={{
         _id: ids,
-        name: 'Beka',
+        name: username,
         avatar: 'https://placeimg.com/140/140/any'
       }}
     />
