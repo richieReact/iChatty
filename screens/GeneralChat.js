@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
+
+import io from 'socket.io-client'
 
 import useMessages from '../hooks/useMessages'
 import { Context as UserContext } from '../context/UserContext'
@@ -10,9 +12,16 @@ const GeneralChat = () => {
   const [messages, ids, getMessages, randomId, setMessages] = useMessages()
   const { state: { username } } = useContext(UserContext)
 
+  const socketRef = useRef()
+  socketRef.current = io('http://192.168.0.17:8000')
+
   useEffect(() => {
     getMessages()
     randomId()
+    const socket = io('http://192.168.0.17:8000')
+    socket.on('your id', id => {
+      console.log(id)
+    })
   }, [])
 
   const onSend = (message) => {
@@ -24,6 +33,7 @@ const GeneralChat = () => {
       text: txt,
       user: userObject
     }
+    socketRef.current.emit('send message', messageObject)
     fetch("http://192.168.0.17:8000/api/messages", {
       method: "POST",
       headers: {
