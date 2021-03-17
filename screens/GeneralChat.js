@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import React, { useEffect, useContext, useRef } from 'react'
+import { StyleSheet } from 'react-native'
 
 import io from 'socket.io-client'
 
 import useMessages from '../hooks/useMessages'
 import { Context as UserContext } from '../context/UserContext'
-
 import { GiftedChat as GChat } from 'react-native-gifted-chat'
 
 const GeneralChat = () => {
