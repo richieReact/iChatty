@@ -5,7 +5,7 @@ import { Input } from 'react-native-elements'
 import { Context as UserContext } from '../context/UserContext'
 
 const LoginForm = () => {
-  const [username, setUsername] = useState([])
+  const [username, setUsername] = useState([''])
   const { state, editUsername } = useContext(UserContext)
 
   return (

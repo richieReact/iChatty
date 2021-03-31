@@ -1,24 +1,37 @@
 import React from 'react'
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 
 import HomeScreen from './src/screens/HomeScreen'
 import GeneralChat from './src/screens/GeneralChat'
 import SportChatScreen from './src/screens/SportChatScreen'
 import GamerChatScreen from './src/screens/GamerChatScreen'
 import TrumpScreen from './src/screens/TrumpScreen'
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen'
+import SignupScreen from './src/screens/SignupScreen'
+import SigninScreen from './src/screens/SigninScreen'
 
 import { Provider as UserProvider } from './src/context/UserContext'
+import { Provider as AuthProvider } from './src/context/AuthContext'
+import { setNavigator } from './src/navigationRef'
 
-const navigator = createStackNavigator(
-  {
-  Home: HomeScreen,
-  General: GeneralChat,
-  Sports: SportChatScreen,
-  Games: GamerChatScreen,
-  Trump: TrumpScreen
+
+const switchNavigator = createSwitchNavigator({
+  ResolveAuth: ResolveAuthScreen,
+  loginFlow: createStackNavigator({
+    Signup: SignupScreen,
+    Signin: SigninScreen
+  }),
+  mainFlow: createBottomTabNavigator({
+    Home: HomeScreen,
+    General: GeneralChat,
+    Sports: SportChatScreen,
+    Games: GamerChatScreen,
+    Trump: TrumpScreen
+  })
   }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'ResolveAuth',
   defaultNavigationOptions: {
     title: 'iChatty',
     headerStyle: {
@@ -28,12 +41,17 @@ const navigator = createStackNavigator(
 }
 );
 
-const App = createAppContainer(navigator);
+const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
+    <AuthProvider>
     <UserProvider>
-      <App />
+      <App ref={(navigator) => {
+        setNavigator(navigator)
+        }} 
+      />
     </UserProvider>
+    </AuthProvider>
   )
 }
