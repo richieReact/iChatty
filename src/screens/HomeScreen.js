@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, StyleSheet, Button, SafeAreaView } from 'react-native'
 import LoginForm from '../components/LoginForm'
+import { Context as AuthContext } from '../context/AuthContext'
 
 const HomeScreen = ({ navigation }) => {
+  const { signout } = useContext(AuthContext)
 
   return (
     <SafeAreaView style={styles.container} >
@@ -24,6 +26,7 @@ const HomeScreen = ({ navigation }) => {
         title='Stupid Trump quotes'
         onPress={() => navigation.navigate('Trump')}
       />
+      <Button title='Sign out' onPress={signout} />
     </SafeAreaView>
   )
 }
