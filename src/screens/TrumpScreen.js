@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { SafeAreaView, Text, StyleSheet, Image } from 'react-native'
 
 const TrumpScreen = () => {
   const [quote, setQuote] = useState('')
@@ -15,13 +15,13 @@ const TrumpScreen = () => {
 
   return (
     <>
-      <View style={styles.container} >
+      <SafeAreaView style={styles.container} >
         <Image 
           style={styles.pic}
           source={require('../assets/unnamed.jpg')}
         />
         <Text style={styles.quote} >{quote}</Text>
-      </View>
+      </SafeAreaView>
     </>
   )
 }

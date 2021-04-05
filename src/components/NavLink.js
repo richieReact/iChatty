@@ -4,12 +4,18 @@ import { withNavigation } from 'react-navigation'
 
 const NavLink = ({ navigation, text, routeName }) => {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(routeName)} >
+    <TouchableOpacity 
+      style={styles.navi}
+      onPress={() => navigation.navigate(routeName)} >
       <Text>{text}</Text>
     </TouchableOpacity> 
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  navi: {
+    alignItems: 'center'
+  }
+})
 
 export default withNavigation(NavLink)

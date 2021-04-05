@@ -27,6 +27,7 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate('Trump')}
       />
       <Button title='Sign out' onPress={signout} />
+      <Button title='RN Paper Test' onPress={() => navigation.navigate('Paper')} />
     </SafeAreaView>
   )
 }
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#fdf5e6'
+    // backgroundColor: '#fdf5e6'
   },
   title: {
     fontSize: 85,
