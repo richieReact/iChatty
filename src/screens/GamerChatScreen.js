@@ -17,7 +17,6 @@ const GamerChatScreen = () => {
   const onSend = (message) => {
     let userObject = message[0].user
     let txt = message[0].text
-    console.log(message)
     setGamerMessages(previousMessages => GiftedChat.append(previousMessages, message))
     const messageObject = {
       text: txt,

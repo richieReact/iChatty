@@ -36,9 +36,13 @@ const switchNavigator = createSwitchNavigator({
   }, {
   initialRouteName: 'ResolveAuth',
   defaultNavigationOptions: {
-    title: 'iChatty',
+    title: 'Chatty',
     headerStyle: {
       backgroundColor: '#fdf5e6'
+    },
+    tabBarOptions: {
+      backgroundColor: 'grey',
+      activeTintColor: 'red'
     }
   }
 }

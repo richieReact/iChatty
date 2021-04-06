@@ -2,11 +2,11 @@ import React from 'react'
 import { StyleSheet, SafeAreaView } from 'react-native'
 import { Text, withTheme, useTheme } from 'react-native-paper'
 
-const PaperTest = () => {
-  const colors = useTheme()
+const PaperTest = ({ theme }) => {
+  const { colors } = theme
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background,  }]}>
       <Text>
         Test of React-Native-Paper
       </Text>
@@ -22,8 +22,9 @@ PaperTest.navigationOptions = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'grey',
-    flex: 1
+    flex: 1,
+    alignItems: 'center',
+    alignContent: 'center'
   }
 })
 
