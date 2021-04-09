@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { useEffect, useContext, useRef } from 'react'
+import { StyleSheet } from 'react-native'
+import io from 'socket.io-client'
 
 import { GiftedChat } from 'react-native-gifted-chat'
 import useGamerMessages from '../hooks/useGamerMessages'
@@ -9,7 +10,15 @@ const GamerChatScreen = () => {
   const [gamerMessages, ids, getGamerMessages, randomId, setGamerMessages] = useGamerMessages()
   const { state: { username } } = useContext(UserContext)
 
+  const socket = useRef(null)
+
   useEffect(() => {
+    socket.current = io('http://192.168.0.17:8000')
+    socket.current.on('send message', message => {
+      
+
+      setGamerMessages(previousMessages => GiftedChat.append(previousMessages, message))
+    });
     getGamerMessages()
     randomId()
   }, [])
@@ -17,7 +26,9 @@ const GamerChatScreen = () => {
   const onSend = (message) => {
     let userObject = message[0].user
     let txt = message[0].text
-    setGamerMessages(previousMessages => GiftedChat.append(previousMessages, message))
+    socket.current.emit('send message', message[0])
+    // setGamerMessages(previousMessages => GiftedChat.append(previousMessages, message))
+
     const messageObject = {
       text: txt,
       user: userObject
