@@ -15,8 +15,6 @@ const GamerChatScreen = () => {
   useEffect(() => {
     socket.current = io('http://192.168.0.17:8000')
     socket.current.on('send message', message => {
-      
-
       setGamerMessages(previousMessages => GiftedChat.append(previousMessages, message))
     });
     getGamerMessages()
@@ -27,7 +25,6 @@ const GamerChatScreen = () => {
     let userObject = message[0].user
     let txt = message[0].text
     socket.current.emit('send message', message[0])
-    // setGamerMessages(previousMessages => GiftedChat.append(previousMessages, message))
 
     const messageObject = {
       text: txt,
