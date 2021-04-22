@@ -6,7 +6,7 @@ const PaperTest = ({ theme }) => {
   const { colors } = theme
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background,  }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background, }]}>
       <Text>
         Test of React-Native-Paper
       </Text>
