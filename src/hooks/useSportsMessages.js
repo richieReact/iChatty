@@ -14,6 +14,7 @@ export default () => {
       const arrMsg = resJSON.reverse()
       setSportsMessages(arrMsg)
     }).then(() => {
+      // I need to go around and clean up stuff like this since these things are correct
       console.log({sportsMessages})
     }).catch((err) => {
       console.log(err)

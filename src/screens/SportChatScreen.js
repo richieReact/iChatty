@@ -40,7 +40,7 @@ const SportChatScreen = () => {
       // isLoadingEarlier
       scrollToBottom
       infiniteScroll
-      loadEarlier
+      // loadEarlier
       alwaysShowSend
       renderUsernameOnMessage
       inverted={true}
