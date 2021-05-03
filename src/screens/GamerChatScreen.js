@@ -13,7 +13,7 @@ const GamerChatScreen = () => {
   const socket = useRef(null)
 
   useEffect(() => {
-    socket.current = io('http://192.168.0.17:8000')
+    socket.current = io('http://192.168.0.6:8000')
     socket.current.on('send message', message => {
       setGamerMessages(previousMessages => GiftedChat.append(previousMessages, message))
     });
@@ -30,7 +30,7 @@ const GamerChatScreen = () => {
       text: txt,
       user: userObject
     }
-    fetch("http://192.168.0.17:8000/api/gamerMessages", {
+    fetch("http://192.168.0.6:8000/api/gamerMessages", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"

@@ -12,12 +12,14 @@ const GeneralChat = () => {
   const { state: { username } } = useContext(UserContext)
 
   const socketRef = useRef()
-  socketRef.current = io('http://192.168.0.17:8000')
+  // GamerChat has the correct implication of all this socket stuff
+  socketRef.current = io('http://192.168.0.6:8000')
 
   useEffect(() => {
     getMessages()
     randomId()
-    const socket = io('http://192.168.0.17:8000')
+    // Fix all this shit
+    const socket = io('http://192.168.0.6:8000')
     socket.on('your id', id => {
       console.log(id)
     })
@@ -33,7 +35,7 @@ const GeneralChat = () => {
       user: userObject
     }
     socketRef.current.emit('send message', messageObject)
-    fetch("http://192.168.0.17:8000/api/messages", {
+    fetch("http://192.168.0.6:8000/api/messages", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"

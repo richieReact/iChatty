@@ -5,7 +5,7 @@ export default () => {
   const [ids, setIds] = useState([])
 
   const getSportsMessages = async () => {
-    await fetch("http://192.168.0.17:8000/api/sportsMessages", {
+    await fetch("http://192.168.0.6:8000/api/sportsMessages", {
       method: "GET"
     }).then((res) => {
       console.log(res)

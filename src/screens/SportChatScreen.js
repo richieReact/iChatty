@@ -22,7 +22,7 @@ const SportChatScreen = () => {
       text: txt,
       user: userObject
     }
-    fetch("http://192.168.0.17:8000/api/sportsMessages", {
+    fetch("http://192.168.0.6:8000/api/sportsMessages", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"
