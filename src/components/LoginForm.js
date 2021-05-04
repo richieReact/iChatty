@@ -14,6 +14,8 @@ const LoginForm = () => {
         value={username} 
         onChangeText={(text) => editUsername(text)}
         label='Input your monicker...' 
+        inputStyle={{ color: 'white' }}
+        labelStyle={{ color: 'white' }}
       />
     </>
   )

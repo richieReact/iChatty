@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     fontSize: 85,
     alignItems: 'center',
     marginLeft: 90,
-    marginBottom: 40
+    marginBottom: 40,
+    color: 'black'
   }
 })
 
