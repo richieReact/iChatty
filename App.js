@@ -25,7 +25,7 @@ const switchNavigator = createSwitchNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen
   }),
-  mainFlow: createBottomTabNavigator({
+  mainFlow: createStackNavigator({
     Home: HomeScreen,
     General: GeneralChat,
     Sports: SportChatScreen,
