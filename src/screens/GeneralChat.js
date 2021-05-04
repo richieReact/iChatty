@@ -11,30 +11,26 @@ const GeneralChat = () => {
   const [messages, ids, getMessages, randomId, setMessages] = useMessages()
   const { state: { username } } = useContext(UserContext)
 
-  const socketRef = useRef()
-  // GamerChat has the correct implication of all this socket stuff
-  socketRef.current = io('http://192.168.0.6:8000')
+  const socket = useRef()
 
   useEffect(() => {
+    socket.current = io('http://192.168.0.6:8000')
+    socket.current.on('send message', message => {
+      setMessages(previousMessages => GChat.append(previousMessages, message))
+    });
     getMessages()
     randomId()
-    // Fix all this shit
-    const socket = io('http://192.168.0.6:8000')
-    socket.on('your id', id => {
-      console.log(id)
-    })
   }, [])
 
   const onSend = (message) => {
     let userObject = message[0].user
     let txt = message[0].text
-    console.log(message)
-    setMessages(previousMessages => GChat.append(previousMessages, message))
+    socket.current.emit('send message', message[0])
+
     const messageObject = {
       text: txt,
       user: userObject
     }
-    socketRef.current.emit('send message', messageObject)
     fetch("http://192.168.0.6:8000/api/messages", {
       method: "POST",
       headers: {
@@ -72,6 +68,9 @@ const GeneralChat = () => {
 GeneralChat.navigationOptions = () => {
   return {
     title: 'General Chat',
+    headerStyle: {
+      backgroundColor: 'grey'
+    }
   }
 }
 

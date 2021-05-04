@@ -20,7 +20,7 @@ const TrumpScreen = () => {
           style={styles.pic}
           source={require('../assets/unnamed.jpg')}
         />
-        <Text style={styles.quote} >{quote}</Text>
+        <Text style={styles.quote}>{quote}</Text>
       </SafeAreaView>
     </>
   )
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     margin: 30
   },
   pic: {
-    height: 420,
+    height: 452,
     width: 420
   }
 })

@@ -44,7 +44,6 @@ const HomeScreen = ({ navigation }) => {
       />
       <Spacer />
       <Button title='Sign out' onPress={signout} raised />
-      <Button title='RN Paper Test' onPress={() => navigation.navigate('Paper')} raised type='outline' />
     </SafeAreaView>
     </ImageBackground>
   )

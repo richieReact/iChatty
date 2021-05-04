@@ -11,12 +11,10 @@ import TrumpScreen from './src/screens/TrumpScreen'
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen'
 import SignupScreen from './src/screens/SignupScreen'
 import SigninScreen from './src/screens/SigninScreen'
-import PaperTest from './src/screens/PaperTest'
 
 import { Provider as UserProvider } from './src/context/UserContext'
 import { Provider as AuthProvider } from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef'
-import { DarkTheme, Provider as PaperProvider } from 'react-native-paper'
 
 
 const switchNavigator = createSwitchNavigator({
@@ -30,8 +28,7 @@ const switchNavigator = createSwitchNavigator({
     General: GeneralChat,
     Sports: SportChatScreen,
     Games: GamerChatScreen,
-    Trump: TrumpScreen,
-    Paper: PaperTest
+    Trump: TrumpScreen
   })
   }, {
   initialRouteName: 'ResolveAuth',
@@ -50,13 +47,8 @@ const switchNavigator = createSwitchNavigator({
 
 const App = createAppContainer(switchNavigator);
 
-const theme = {
-  ...DarkTheme
-}
-
 export default () => {
   return (
-    <PaperProvider theme={theme} >
     <AuthProvider>
     <UserProvider>
       <App ref={(navigator) => {
@@ -65,6 +57,5 @@ export default () => {
       />
     </UserProvider>
     </AuthProvider>
-    </PaperProvider>
   )
 }
