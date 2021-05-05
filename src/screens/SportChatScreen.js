@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import React, { useEffect, useContext, useRef } from 'react'
+import { StyleSheet } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 import useSportsMessages from '../hooks/useSportsMessages'
 import { Context as UserContext } from '../context/UserContext'

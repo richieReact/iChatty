@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, ImageBackground } from 'react-native'
 import { NavigationEvents } from 'react-navigation'
 import { Context as AuthContext } from '../context/AuthContext'
 import AuthForm from '../components/AuthForm'
@@ -10,8 +10,13 @@ const SignupScreen = ({ navigation }) => {
   const { state, signup, clearErrorMessage } = useContext(AuthContext)
 
   console.log(state.errorMessage)
+  const image = { uri: "https://preview.redd.it/hqkgw0cek1x61.jpg?width=640&crop=smart&auto=webp&s=6f47a84709b7ddc26a1a2fa991a8df013b58356f" }
 
   return (
+    <ImageBackground
+      source={image}
+      style={styles.image}
+    >
     <View style={styles.container} >
       <Logo />
       <NavigationEvents onWillFocus={clearErrorMessage} />
@@ -26,6 +31,7 @@ const SignupScreen = ({ navigation }) => {
         text='Already have an account? Sign in instead'
       />
     </View>
+    </ImageBackground>
   )
 }
 
@@ -40,6 +46,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginBottom: 250
+  },
+  image: {
+    height: '100%',
+    width: '100%'
   }
 })
 

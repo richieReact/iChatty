@@ -10,7 +10,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
   return (
     <>
       <Spacer>
-        <Text h3>{headerText}</Text>
+        <Text h3 style={styles.title} >{headerText}</Text>
       </Spacer>
       <Input 
         autoCapitalize='none'
@@ -18,6 +18,8 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
         label='Email'
         value={email}
         onChangeText={setEmail}
+        inputStyle={{ color: 'white' }}
+        labelStyle={{ color: 'white' }}
       />
       <Spacer />
       <Input 
@@ -27,6 +29,8 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
         label='Password'
         value={password}
         onChangeText={setPassword}
+        inputStyle={{ color: 'white' }}
+        labelStyle={{ color: 'white' }}
       />
       {errorMessage ? (
         <Text style={styles.errorMessage} >{errorMessage}</Text>
@@ -43,7 +47,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'red',
     marginLeft: 15,
-    marginTop: 15
+    marginTop: 15,
+  },
+  title: {
+    color: 'white'
   }
 })
 

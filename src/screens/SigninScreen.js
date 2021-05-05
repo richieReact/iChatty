@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, ImageBackground } from 'react-native'
 import { NavigationEvents } from 'react-navigation'
 
 import AuthForm from '../components/AuthForm'
@@ -10,7 +10,13 @@ import Logo from '../components/Logo'
 const SigninScreen = () => {
   const { state, signin, clearErrorMessage } = useContext(Context)
 
+  const image = { uri: "https://preview.redd.it/hqkgw0cek1x61.jpg?width=640&crop=smart&auto=webp&s=6f47a84709b7ddc26a1a2fa991a8df013b58356f" }
+
   return (
+    <ImageBackground
+      source={image}
+      style={styles.image}
+    >
     <View style={styles.container} >
       <Logo />
       <NavigationEvents onWillFocus={clearErrorMessage} />
@@ -25,6 +31,7 @@ const SigninScreen = () => {
         routeName='Signup'
       />
     </View>
+    </ImageBackground>
   )
 }
 
@@ -39,6 +46,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginBottom: 250
+  },
+  image: {
+    height: '100%',
+    width: '100%'
   }
 })
 

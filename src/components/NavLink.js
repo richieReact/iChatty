@@ -7,7 +7,7 @@ const NavLink = ({ navigation, text, routeName }) => {
     <TouchableOpacity 
       style={styles.navi}
       onPress={() => navigation.navigate(routeName)} >
-      <Text>{text}</Text>
+      <Text style={styles.text} >{text}</Text>
     </TouchableOpacity> 
   )
 }
@@ -15,6 +15,9 @@ const NavLink = ({ navigation, text, routeName }) => {
 const styles = StyleSheet.create({
   navi: {
     alignItems: 'center'
+  },
+  text: {
+    color: 'white'
   }
 })
 
