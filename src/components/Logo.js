@@ -2,21 +2,17 @@ import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 
 const Logo = () => {
-  return (
-    <Text style={styles.logo} >
-      Chatty
-    </Text>
-  )
+  return <Text style={styles.logo}>Chatty</Text>
 }
 
 const styles = StyleSheet.create({
   logo: {
     fontSize: 85,
     alignItems: 'center',
-    marginLeft: 90,
+    marginLeft: 80,
     marginBottom: 40,
-    color: 'white'
-  }
+    color: 'white',
+  },
 })
 
 export default Logo

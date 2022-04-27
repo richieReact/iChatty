@@ -8,15 +8,17 @@ import io from 'socket.io-client'
 
 const SportChatScreen = () => {
   const [sportsMessages, ids, getSportsMessages, randomId, setSportsMessages] = useSportsMessages()
-  const { state: { username } } = useContext(UserContext)
+  const {
+    state: { username },
+  } = useContext(UserContext)
 
   const socket = useRef()
 
   useEffect(() => {
     socket.current = io('http://192.168.0.6:8000')
-    socket.current.on('send message', message => {
-      setSportsMessages(previousMessages => GiftedChat.append(previousMessages, message))
-    });
+    socket.current.on('send message', (message) => {
+      setSportsMessages((previousMessages) => GiftedChat.append(previousMessages, message))
+    })
     getSportsMessages()
     randomId()
   }, [])
@@ -28,19 +30,21 @@ const SportChatScreen = () => {
 
     const messageObject = {
       text: txt,
-      user: userObject
+      user: userObject,
     }
-    fetch("http://192.168.0.6:8000/api/sportsMessages", {
-      method: "POST",
+    fetch('http://192.168.0.6:8000/api/sportsMessages', {
+      method: 'POST',
       headers: {
-          "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(messageObject)
-      }).then((res) => {
-          return res.json();
-      }).catch((err) => {
-          console.log(err);
-      });
+      body: JSON.stringify(messageObject),
+    })
+      .then((res) => {
+        return res.json()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return (
@@ -54,11 +58,11 @@ const SportChatScreen = () => {
       inverted={true}
       showUserAvatar
       messages={sportsMessages}
-      onSend={message => onSend(message)}
+      onSend={(message) => onSend(message)}
       user={{
         _id: ids,
         name: username,
-        avatar: 'https://placeimg.com/140/140/any'
+        avatar: 'https://placeimg.com/140/140/any',
       }}
     />
   )
@@ -70,8 +74,6 @@ SportChatScreen.navigationOptions = () => {
   }
 }
 
-const styles = StyleSheet.create({
-
-})
+const styles = StyleSheet.create({})
 
 export default SportChatScreen
